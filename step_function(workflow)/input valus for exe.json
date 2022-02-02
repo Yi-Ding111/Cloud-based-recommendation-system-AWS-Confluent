@@ -1,0 +1,5 @@
+{
+"bucket": "***", "prefix": "features/",
+"database": "prd",
+"query_output": "s3://***/query_results/" 
+}

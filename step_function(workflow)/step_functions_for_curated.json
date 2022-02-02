@@ -1,0 +1,53 @@
+{
+  "Comment": "Step function to run imba process",
+  "StartAt": "remove_feature_files",
+  "States": {
+    "remove_feature_files": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-southeast-2:724193151683:function:remove_feature_files:$LATEST",
+      "ResultPath": "$.remove_feature_files",
+      "Next": "exe_query_order_products_prior",
+      "TimeoutSeconds": 60
+    },
+    "exe_query_order_products_prior": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-southeast-2:724193151683:function:exe_query_order_products_prior:$LATEST",
+      "ResultPath": "$.exe_query_order_products_prior",
+      "Next": "exe_query_user_features_1",
+      "TimeoutSeconds": 60
+    },
+    "exe_query_user_features_1": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-southeast-2:724193151683:function:exe_query_user_features_1:$LATEST",
+      "ResultPath": "$.exe_query_user_features_1",
+      "Next": "exe_query_user_features_2",
+      "TimeoutSeconds": 60
+    },
+    "exe_query_user_features_2": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-southeast-2:724193151683:function:exe_query_user_features_2:$LATEST",
+      "ResultPath": "$.exe_query_user_features_2",
+      "Next": "exe_query_up_features",
+      "TimeoutSeconds": 60
+    },
+    "exe_query_up_features": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-southeast-2:724193151683:function:exe_query_up_features:$LATEST",
+      "ResultPath": "$.exe_query_up_features",
+      "Next": "exe_query_prd_features",
+      "TimeoutSeconds": 60
+    },
+    "exe_query_prd_features": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-southeast-2:724193151683:function:exe_query_prd_features:$LATEST",
+      "ResultPath": "$.exe_query_up_features",
+      "Next": "glue_jobrun",
+      "TimeoutSeconds": 60
+    },
+    "glue_jobrun": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-southeast-2:724193151683:function:glue_jobrun:$LATEST",
+      "End": true
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "Comment": "A Hello World example of the Amazon States Language using Pass states",
+    "StartAt": "imba-xgboost-model",
+    "States": {
+      "imba-xgboost-model": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:ap-southeast-2:724193151683:function:imba_xgboost-model",
+        "ResultPath": "$.imba-xgboost-model",
+        "Next": "fill_dynamo_pred",
+        "TimeoutSeconds": 60
+      },
+      "fill_dynamo_pred": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:ap-southeast-2:724193151683:function:fill_dynamo_pred",
+        "ResultPath": "$.imba-xgboost-model",
+        "End": true
+      }
+    }
+  }

@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "description": "schema for imba data.",
+  "properties": {
+    "features": {
+      "description": "The string type is used for strings of text.",
+      "type": "string"
+    },
+    "product_id": {
+      "description": "The number type is used for any numeric type, either integers or floating point numbers.",
+      "type": "string"
+    },
+    "user_id": {
+      "description": "The integer type is used for integral numbers.",
+      "type": "string"
+    }
+  },
+  "title": "SampleRecord",
+  "type": "object"
+}
